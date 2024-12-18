@@ -1,0 +1,29 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+
+- script: |
+    echo "Setting up SECOPS Framework..."
+    mkdir -p tools/local-tools/
+    mkdir -p tools/web-tools/
+    mkdir -p docs/
+    mkdir -p tests/
+    mkdir -p config/
+    mkdir -p scripts/
+    touch README.md
+    echo "# SECOPS Framework" > README.md
+  displayName: 'Set up directory structure'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: $(System.DefaultWorkingDirectory)
+    artifactName: 'SECOPSFramework'
