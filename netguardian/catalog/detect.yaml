@@ -1,0 +1,97 @@
+function: DE
+name: Detect
+summary: Find and analyse possible attacks and compromises as early as possible.
+categories:
+  - name: SIEM & XDR
+    tools:
+      - name: Wazuh
+        url: https://wazuh.com/
+        description: Open source SIEM and XDR with agents, log analysis, file integrity and vulnerability detection.
+        teams: [blue]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, docker, web]
+        tags: [siem, xdr, fim]
+      - name: Security Onion
+        url: https://securityonionsolutions.com/
+        description: Linux distribution bundling network and host monitoring, hunting and case tools.
+        teams: [blue]
+        license: Mixed open source (free)
+        cost: free
+        platforms: [linux, appliance]
+        tags: [siem, nsm, threat-hunting]
+  - name: Network monitoring & IDS
+    tools:
+      - name: Suricata
+        url: https://suricata.io/
+        description: High-performance IDS, IPS and network security monitoring engine.
+        teams: [blue]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: suricata
+        tags: [ids, ips, nsm]
+      - name: Zeek
+        url: https://zeek.org/
+        description: Network analysis framework that turns traffic into rich, searchable logs.
+        teams: [blue]
+        license: BSD-3-Clause
+        cost: free
+        platforms: [linux, macos]
+        command: zeek
+        tags: [nsm, logs, threat-hunting]
+      - name: Wireshark
+        url: https://www.wireshark.org/
+        description: Interactive network protocol analyser for deep packet inspection.
+        teams: [blue, red]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: wireshark
+        tags: [packet-analysis, forensics]
+  - name: Endpoint & host visibility
+    tools:
+      - name: osquery
+        url: https://www.osquery.io/
+        description: Query your endpoints like a database to spot suspicious state.
+        teams: [blue]
+        license: Apache-2.0 / GPL-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: osqueryi
+        tags: [endpoint, telemetry, hunting]
+      - name: Sysmon
+        url: https://learn.microsoft.com/sysinternals/downloads/sysmon
+        description: Detailed Windows event logging for process, network and file activity.
+        teams: [blue]
+        license: Proprietary (free)
+        cost: free
+        platforms: [windows]
+        tags: [endpoint, logging, windows]
+  - name: Detection rules & threat intel
+    tools:
+      - name: Sigma
+        url: https://github.com/SigmaHQ/sigma
+        description: Vendor-neutral detection rule format with a large community ruleset.
+        teams: [blue]
+        license: DRL-1.1
+        cost: free
+        platforms: [linux, macos, windows]
+        tags: [detection-rules, siem]
+      - name: YARA
+        url: https://virustotal.github.io/yara/
+        description: Pattern-matching engine for identifying and classifying malware samples.
+        teams: [blue]
+        license: BSD-3-Clause
+        cost: free
+        platforms: [linux, macos, windows]
+        command: yara
+        tags: [malware, detection-rules]
+      - name: MISP
+        url: https://www.misp-project.org/
+        description: Threat intelligence platform for sharing indicators and events.
+        teams: [blue]
+        license: AGPL-3.0
+        cost: free
+        platforms: [docker, linux]
+        tags: [threat-intel, sharing]

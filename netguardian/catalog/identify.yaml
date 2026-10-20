@@ -1,0 +1,136 @@
+function: ID
+name: Identify
+summary: Understand your assets, exposure and risks. Includes reconnaissance and offensive testing used to find weaknesses before an adversary does.
+categories:
+  - name: OSINT & reconnaissance
+    tools:
+      - name: theHarvester
+        url: https://github.com/laramies/theHarvester
+        description: Collects emails, subdomains, hosts and names from public sources.
+        teams: [red, blue]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, macos]
+        command: theHarvester
+        tags: [osint, email, subdomains]
+      - name: SpiderFoot
+        url: https://github.com/smicallef/spiderfoot
+        description: Automated OSINT with 200+ modules for IPs, domains, emails and people.
+        teams: [red, blue]
+        license: MIT
+        cost: free
+        platforms: [linux, macos, windows, web]
+        tags: [osint, automation]
+      - name: OWASP Amass
+        url: https://github.com/owasp-amass/amass
+        description: In-depth attack surface mapping and subdomain enumeration.
+        teams: [red, blue]
+        license: Apache-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: amass
+        tags: [attack-surface, subdomains, dns]
+      - name: OSINT Framework
+        url: https://osintframework.com/
+        description: Web directory of free OSINT resources, grouped by data type.
+        teams: [red, blue]
+        license: MIT
+        cost: free
+        platforms: [web]
+        tags: [osint, directory]
+  - name: Asset & network discovery
+    tools:
+      - name: Nmap
+        url: https://nmap.org/
+        description: Network discovery, port scanning, service and OS detection, NSE scripts.
+        teams: [red, blue]
+        license: NPSL
+        cost: free
+        platforms: [linux, macos, windows]
+        command: nmap
+        tags: [scanner, ports, inventory]
+  - name: Vulnerability scanning
+    tools:
+      - name: Greenbone OpenVAS
+        url: https://www.openvas.org/
+        description: Full-featured network vulnerability scanner with a large test feed.
+        teams: [blue, red]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, docker]
+        tags: [vulnerability-scanner, network]
+      - name: Nuclei
+        url: https://github.com/projectdiscovery/nuclei
+        description: Template-based scanner for CVEs, misconfigurations and exposures.
+        teams: [red, blue]
+        license: MIT
+        cost: free
+        platforms: [linux, macos, windows]
+        command: nuclei
+        tags: [vulnerability-scanner, templates, web]
+      - name: Trivy
+        url: https://github.com/aquasecurity/trivy
+        description: Scans containers, file systems, repos and IaC for vulnerabilities and misconfigurations.
+        teams: [blue]
+        license: Apache-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: trivy
+        tags: [containers, sbom, iac, cloud]
+  - name: Web application testing
+    tools:
+      - name: OWASP ZAP
+        url: https://www.zaproxy.org/
+        description: Intercepting proxy and automated scanner for web applications.
+        teams: [red, blue]
+        license: Apache-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        tags: [web, proxy, dast]
+      - name: Burp Suite Community
+        url: https://portswigger.net/burp/communitydownload
+        description: Manual web testing proxy with repeater, decoder and intruder.
+        teams: [red]
+        license: Proprietary (free community edition)
+        cost: free
+        platforms: [linux, macos, windows]
+        tags: [web, proxy]
+  - name: Adversary emulation
+    tools:
+      - name: Metasploit Framework
+        url: https://www.metasploit.com/
+        description: Exploit development and execution framework used in authorised penetration tests.
+        teams: [red]
+        license: BSD-3-Clause
+        cost: free
+        platforms: [linux, macos, windows]
+        command: msfconsole
+        tags: [exploitation, pentest]
+      - name: BloodHound Community Edition
+        url: https://github.com/SpecterOps/BloodHound
+        description: Graphs Active Directory and Entra ID attack paths so defenders can close them.
+        teams: [red, blue]
+        license: Apache-2.0
+        cost: free
+        platforms: [docker, web]
+        tags: [active-directory, attack-paths, purple-team]
+  - name: Credential auditing
+    tools:
+      - name: Hashcat
+        url: https://hashcat.net/hashcat/
+        description: GPU-accelerated password recovery used to audit credential strength.
+        teams: [red, blue]
+        license: MIT
+        cost: free
+        platforms: [linux, macos, windows]
+        command: hashcat
+        tags: [passwords, auditing]
+      - name: John the Ripper
+        url: https://www.openwall.com/john/
+        description: Password auditing tool with many format converters.
+        teams: [red, blue]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: john
+        tags: [passwords, auditing]

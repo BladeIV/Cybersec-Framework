@@ -1,0 +1,48 @@
+function: GV
+name: Govern
+summary: Set and track the organisation's cybersecurity strategy, policy, risk appetite and roles.
+categories:
+  - name: Risk & compliance (GRC)
+    tools:
+      - name: CISO Assistant
+        url: https://github.com/intuitem/ciso-assistant-community
+        description: GRC platform with built-in mappings for NIST CSF, ISO 27001, SOC 2 and more.
+        teams: [blue]
+        license: AGPL-3.0
+        cost: free
+        platforms: [docker, web]
+        tags: [grc, compliance, nist-csf, iso27001]
+      - name: SimpleRisk
+        url: https://www.simplerisk.com/
+        description: Risk register and risk management workflow for small and mid-size teams.
+        teams: [blue]
+        license: MPL-2.0
+        cost: free
+        platforms: [docker, web]
+        tags: [risk-register, grc]
+      - name: Eramba Community
+        url: https://www.eramba.org/
+        description: Open GRC tool covering policies, risks, controls, audits and exceptions.
+        teams: [blue]
+        license: Proprietary (free community edition)
+        cost: free
+        platforms: [docker, web]
+        tags: [grc, audit, policy]
+  - name: Threat modeling
+    tools:
+      - name: OWASP Threat Dragon
+        url: https://owasp.org/www-project-threat-dragon/
+        description: Draw data-flow diagrams and record threats using STRIDE, LINDDUN and CIA.
+        teams: [blue, red]
+        license: Apache-2.0
+        cost: free
+        platforms: [linux, macos, windows, web]
+        tags: [threat-modeling, stride, design-review]
+      - name: MITRE ATT&CK Navigator
+        url: https://mitre-attack.github.io/attack-navigator/
+        description: Map detections, coverage gaps and adversary techniques on the ATT&CK matrix.
+        teams: [blue, red]
+        license: Apache-2.0
+        cost: free
+        platforms: [web]
+        tags: [mitre-attack, coverage, purple-team]
