@@ -1,17 +1,17 @@
 # NetGuardian — Terms of Use & Acceptable Use Policy
 
-*This document is a template for the NetGuardian project's maintainers to review — ideally with qualified legal counsel — before relying on it. It is **not legal advice**. It sets out conduct expectations and disclaimers that **supplement but do not modify** the GNU General Public License v3.0 (GPL-3.0) under which NetGuardian is distributed. Every item in `[square brackets]` is a placeholder to complete.*
+*This document sets out conduct expectations and disclaimers that **supplement but do not modify** the GNU General Public License v3.0 (GPL-3.0) under which NetGuardian is distributed. It is **not legal advice**; the Maintainers should still have it reviewed by qualified legal counsel before relying on it.*
 
-**Effective date:** `[effective date]`
+**Effective date:** 2026-10-20
 **Applies to:** the NetGuardian software, catalog data, and documentation ("NetGuardian", "the Project", "the Software"), maintained by the project maintainers ("the Maintainers") and published at `https://github.com/BladeIV/Cybersec-Framework`.
 
 ---
 
-## Not Legal Advice (Template Notice)
+## Not Legal Advice
 
-This document is a **starting-point template** provided for the convenience of the Maintainers and users. It is **not legal advice**, has **not** been reviewed by a lawyer on your behalf, and creates no attorney–client relationship. Laws differ by country, state, industry, and contract, and this text has not been tailored to any of them. Before relying on it, the Maintainers should have it reviewed and adapted by **qualified legal counsel**, and you remain responsible for understanding the rules that apply to you.
+This document is provided for the convenience of the Maintainers and users. It is **not legal advice**, has **not** been reviewed by a lawyer on your behalf, and creates no attorney–client relationship. Laws differ by country, state, industry, and contract, and this text has not been tailored to any of them. Before relying on it, the Maintainers should have it reviewed and adapted by **qualified legal counsel**, and you remain responsible for understanding the rules that apply to you.
 
-Text in `[square brackets]` — for example `[governing jurisdiction]`, `[contact email]`, and `[security contact email]` — is a placeholder the Maintainers must complete. These Terms intentionally name **no** real company, address, or court.
+The Maintainers have set the project-specific details — the effective date, governing law, and contact addresses — below. The guidance notes marked *(Maintainers: …)* flag points still worth confirming with legal counsel.
 
 ## The Short Version
 
@@ -129,7 +129,7 @@ You are **solely responsible** for determining which laws apply to you and your 
 - the United States **Computer Fraud and Abuse Act (CFAA)** and related state and federal law;
 - the United Kingdom **Computer Misuse Act 1990**;
 - the EU **Directive 2013/40/EU** on attacks against information systems and local implementing laws, and other countries' computer-misuse and cybercrime laws;
-- **data-protection and privacy** law (for example, the **GDPR**, **UK GDPR**, **CCPA/CPRA**, and local equivalents);
+- **data-protection and privacy** law (for example, South Africa's **Protection of Personal Information Act (POPIA)**, the **GDPR**, **UK GDPR**, **CCPA/CPRA**, and other local equivalents);
 - **export-control and dual-use** regulations (for example, the **Wassenaar Arrangement**, the US **EAR**, and EU **Regulation 2021/821**) and economic **sanctions** programmes (for example, those administered by **OFAC**, the **EU**, **UK OFSI**, or the **UN**); and
 - any other criminal, civil, contractual, or regulatory obligations binding on you.
 
@@ -144,7 +144,7 @@ If you discover a vulnerability — whether in a Target you are authorized to te
 - access, modify, and retain **no more data than is necessary** to demonstrate the issue, and do no harm; and
 - follow any disclosure policy, `security.txt`, VDP, or bug-bounty terms the affected party provides.
 
-To report a security issue **in NetGuardian itself**, contact the Maintainers privately at `[security contact email]` (see `SECURITY.md`, if present) rather than opening a public issue. Finding a vulnerability never authorizes you to exceed your scope or to act against systems you are not permitted to test.
+To report a security issue **in NetGuardian itself**, contact the Maintainers privately at **support@prototypeit.co.za** (see `SECURITY.md`, if present) rather than opening a public issue. Finding a vulnerability never authorizes you to exceed your scope or to act against systems you are not permitted to test.
 
 ## Relationship to the GPL-3.0 License
 
@@ -182,7 +182,7 @@ The Maintainers may update these Terms from time to time. Changes take effect wh
 
 ## Governing Law
 
-These Terms are intended to be governed by the laws of `[governing jurisdiction]`, without regard to its conflict-of-laws principles — **to be confirmed by the Maintainers with legal counsel.** This choice concerns these conduct Terms and disclaimers only and **does not affect the GPL-3.0** as it applies to the Software and its source.
+These Terms are intended to be governed by the laws of **South Africa**, without regard to its conflict-of-laws principles. You must also comply with the data-protection laws that apply to you — including South Africa's **POPIA** and any other applicable global data-protection regimes (see *Compliance with Laws, Export Controls & Sanctions*). This choice concerns these conduct Terms and disclaimers only and **does not affect the GPL-3.0** as it applies to the Software and its source.
 
 ## Severability
 
@@ -191,12 +191,12 @@ If any provision of these Terms is held invalid, unlawful, or unenforceable, tha
 ## Contact
 
 - **Project:** NetGuardian — `https://github.com/BladeIV/Cybersec-Framework`
-- **General / project questions:** `[contact email]` or the repository's issue tracker
-- **Security reports (private):** `[security contact email]` (see `SECURITY.md`, if present)
-- **Governing jurisdiction (to be completed with counsel):** `[governing jurisdiction]`
+- **General / project questions:** support@prototypeit.co.za or the repository's issue tracker
+- **Security reports (private):** support@prototypeit.co.za (see `SECURITY.md`, if present)
+- **Governing law:** South Africa
 
 See also: `LICENSE` (GPL-3.0), `README.md`, and `CONTRIBUTING.md`.
 
 ---
 
-*NetGuardian is maintained by the Maintainers and distributed as free software under the GPL-3.0. These Terms govern conduct and are provided alongside — not in place of — that license. This template is not legal advice.*
+*NetGuardian is maintained by the Maintainers and distributed as free software under the GPL-3.0. These Terms govern conduct and are provided alongside — not in place of — that license. This document is not legal advice.*
