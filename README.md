@@ -107,16 +107,26 @@ netguardian case export "Phish Oct20" -o phish-oct20.md
 
 Incident cases follow an Identify → Detect → Respond → Recover flow; pentest cases follow recon → discovery → exploitation → reporting. Both are starting points you're meant to adapt.
 
-## 🛡️ Responsible use
+## ⚖️ Acceptable use & disclaimer
 
-Many tools in the **Identify** section are for authorised penetration testing and security assessments. Use them **only** against systems you own or have **written permission** to test. NetGuardian is a catalog and workflow aid — it does not run attacks on your behalf.
+NetGuardian is built for **lawful, authorised** security work — defensive operations (blue team) and penetration testing or red-teaming you are **explicitly authorised** to perform.
+
+By using NetGuardian you agree to:
+
+- Only test, scan, or assess systems you **own** or have **written permission** to test.
+- Comply with all applicable laws, regulations and contractual obligations.
+- Use the tools and workflows here solely for legitimate security, research or educational purposes.
+
+You must **not** use NetGuardian, or anything it links to, for unauthorised access, "black-hat" hacking, fraud, harassment, or any other unlawful or malicious activity. **The maintainers do not condone misuse.**
+
+NetGuardian is a catalog and workflow aid — it does not perform attacks on your behalf, and it links to third-party tools that each carry their own licenses and terms. The software is provided "as is", without warranty of any kind, and the maintainers accept no liability for how you choose to use it.
 
 ## 🤝 Contributing
 
 Adding a tool is usually a one-file edit. See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the entry format and the checks.
 
 ```bash
-git clone https://github.com/BladeIV/NetGuardian
+git clone https://github.com/BladeIV/Cybersec-Framework
 cd NetGuardian
 pip install -e ".[dev]"
 pytest                          # validates every catalog entry
