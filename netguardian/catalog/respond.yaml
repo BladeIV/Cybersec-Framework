@@ -1,0 +1,68 @@
+function: RS
+name: Respond
+summary: "Act on a detected incident: triage, contain, investigate and coordinate."
+categories:
+  - name: Case management & coordination
+    tools:
+      - name: TheHive
+        url: https://github.com/TheHive-Project/TheHive
+        description: Scalable incident response platform for case and alert management.
+        teams: [blue]
+        license: AGPL-3.0
+        cost: free
+        platforms: [docker, linux]
+        tags: [incident-response, case-management]
+      - name: IRIS
+        url: https://github.com/dfir-iris/iris-web
+        description: Collaborative DFIR case management with timelines and evidence tracking.
+        teams: [blue]
+        license: LGPL-3.0
+        cost: free
+        platforms: [docker]
+        tags: [dfir, case-management]
+  - name: Enrichment & analysis
+    tools:
+      - name: Cortex
+        url: https://github.com/TheHive-Project/Cortex
+        description: Runs analysers and responders against observables, pairs with TheHive.
+        teams: [blue]
+        license: AGPL-3.0
+        cost: free
+        platforms: [docker, linux]
+        tags: [enrichment, automation]
+      - name: CyberChef
+        url: https://github.com/gchq/CyberChef
+        description: Web app for decoding, decrypting and transforming data during analysis.
+        teams: [blue, red]
+        license: Apache-2.0
+        cost: free
+        platforms: [web]
+        tags: [analysis, decoding]
+  - name: Live triage & forensics
+    tools:
+      - name: Velociraptor
+        url: https://github.com/Velocidex/velociraptor
+        description: Endpoint visibility and digital forensics at scale using a hunting query language.
+        teams: [blue]
+        license: AGPL-3.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: velociraptor
+        tags: [dfir, live-response, hunting]
+      - name: Volatility 3
+        url: https://github.com/volatilityfoundation/volatility3
+        description: Memory forensics framework for analysing RAM captures.
+        teams: [blue]
+        license: VSL (BSD-style)
+        cost: free
+        platforms: [linux, macos, windows]
+        command: vol
+        tags: [memory-forensics, dfir]
+      - name: GRR Rapid Response
+        url: https://github.com/google/grr
+        description: Remote live forensics for triaging many endpoints at once.
+        teams: [blue]
+        license: Apache-2.0
+        cost: free
+        platforms: [linux, docker]
+        tags: [dfir, live-response]

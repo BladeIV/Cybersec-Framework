@@ -1,0 +1,51 @@
+function: RC
+name: Recover
+summary: Restore services and data after an incident, and capture lessons learned.
+categories:
+  - name: Backup & restore
+    tools:
+      - name: Restic
+        url: https://restic.net/
+        description: Fast, secure, deduplicating backup program with many storage backends.
+        teams: [blue]
+        license: BSD-2-Clause
+        cost: free
+        platforms: [linux, macos, windows]
+        command: restic
+        tags: [backup, restore]
+      - name: BorgBackup
+        url: https://www.borgbackup.org/
+        description: Deduplicating backup with compression and authenticated encryption.
+        teams: [blue]
+        license: BSD-3-Clause
+        cost: free
+        platforms: [linux, macos]
+        command: borg
+        tags: [backup, restore]
+      - name: UrBackup
+        url: https://www.urbackup.org/
+        description: Client/server backup for file and full image backups of whole fleets.
+        teams: [blue]
+        license: AGPL-3.0
+        cost: free
+        platforms: [linux, windows]
+        tags: [backup, imaging]
+  - name: Disk imaging & recovery
+    tools:
+      - name: Clonezilla
+        url: https://clonezilla.org/
+        description: Disk imaging and cloning for bare-metal recovery.
+        teams: [blue]
+        license: GPL-2.0
+        cost: free
+        platforms: [appliance, linux]
+        tags: [imaging, recovery]
+      - name: TestDisk & PhotoRec
+        url: https://www.cgsecurity.org/
+        description: Recover lost partitions and carve deleted files from damaged media.
+        teams: [blue]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: testdisk
+        tags: [recovery, forensics]

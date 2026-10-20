@@ -1,0 +1,90 @@
+function: PR
+name: Protect
+summary: Put safeguards in place, such as hardening, identity, secrets handling and secure network design.
+categories:
+  - name: System hardening
+    tools:
+      - name: Lynis
+        url: https://cisofy.com/lynis/
+        description: Security auditing and hardening checks for Linux, macOS and Unix.
+        teams: [blue]
+        license: GPL-3.0
+        cost: free
+        platforms: [linux, macos]
+        command: lynis
+        tags: [hardening, audit]
+      - name: OpenSCAP
+        url: https://www.open-scap.org/
+        description: Checks systems against SCAP baselines such as CIS and DISA STIG.
+        teams: [blue]
+        license: LGPL-2.1
+        cost: free
+        platforms: [linux]
+        command: oscap
+        tags: [hardening, compliance, stig, cis]
+  - name: Secrets & code security
+    tools:
+      - name: Gitleaks
+        url: https://github.com/gitleaks/gitleaks
+        description: Finds hard-coded secrets in git repos and files.
+        teams: [blue, red]
+        license: MIT
+        cost: free
+        platforms: [linux, macos, windows]
+        command: gitleaks
+        tags: [secrets, git, devsecops]
+      - name: TruffleHog
+        url: https://github.com/trufflesecurity/trufflehog
+        description: Finds and verifies leaked credentials across git, cloud and chat services.
+        teams: [blue, red]
+        license: AGPL-3.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: trufflehog
+        tags: [secrets, credentials]
+      - name: Semgrep Community Edition
+        url: https://github.com/semgrep/semgrep
+        description: Fast static analysis with readable rules for many languages.
+        teams: [blue]
+        license: LGPL-2.1
+        cost: free
+        platforms: [linux, macos]
+        command: semgrep
+        tags: [sast, code-review, devsecops]
+  - name: Identity & access
+    tools:
+      - name: Keycloak
+        url: https://www.keycloak.org/
+        description: Single sign-on and identity provider with MFA, OIDC and SAML.
+        teams: [blue]
+        license: Apache-2.0
+        cost: free
+        platforms: [docker, linux]
+        tags: [iam, sso, mfa]
+      - name: KeePassXC
+        url: https://keepassxc.org/
+        description: Offline password manager for individuals and shared team vaults.
+        teams: [blue, red]
+        license: GPL-3.0
+        cost: free
+        platforms: [linux, macos, windows]
+        tags: [passwords, vault]
+  - name: Network protection
+    tools:
+      - name: OPNsense
+        url: https://opnsense.org/
+        description: Firewall and router platform with VPN, IDS/IPS and traffic shaping.
+        teams: [blue]
+        license: BSD-2-Clause
+        cost: free
+        platforms: [appliance]
+        tags: [firewall, vpn, network]
+      - name: WireGuard
+        url: https://www.wireguard.com/
+        description: Simple, fast, modern VPN.
+        teams: [blue, red]
+        license: GPL-2.0
+        cost: free
+        platforms: [linux, macos, windows]
+        command: wg
+        tags: [vpn, network]
