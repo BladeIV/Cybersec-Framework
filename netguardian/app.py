@@ -99,18 +99,29 @@ class NetGuardianApp(App):
         tree.clear()
         view = self._current()
         total = 0
+        visible: set[tuple[str, str]] = set()
         for fn in view.functions:
             fn_node = tree.root.add(f"{fn.code} · {fn.name}", expand=True)
             for cat in fn.categories:
                 cat_node = fn_node.add(cat.name, expand=True)
                 for tool in cat.tools:
                     total += 1
+                    visible.add((tool.name, tool.url))
                     label = tool.name
                     if tool.is_installed:
                         label += " ✓"
                     cat_node.add_leaf(label, data=tool)
         tree.root.expand()
         self.query_one("#count", Static).update(f"{total} tools shown")
+
+        # If the selected tool was filtered out, drop the stale selection so
+        # the details panel and the "open" action don't point at a hidden tool.
+        if self._selected_tool is not None and (
+            self._selected_tool.name,
+            self._selected_tool.url,
+        ) not in visible:
+            self._selected_tool = None
+            self.query_one("#detail", Markdown).update(_WELCOME)
 
     # --- events --------------------------------------------------------
     def on_input_changed(self, event: Input.Changed) -> None:

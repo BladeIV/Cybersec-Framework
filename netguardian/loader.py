@@ -28,13 +28,23 @@ def _parse_tool(raw: dict, *, function: str, category: str, where: str) -> Tool:
     if missing:
         raise CatalogError(f"{where}: tool missing fields {missing}: {raw!r}")
 
+    _require_sequence(raw["teams"], "teams", raw["name"], where)
     teams = tuple(raw["teams"])
+    if not teams:
+        raise CatalogError(
+            f"{where}: tool {raw['name']!r} must list at least one team "
+            f"({sorted(VALID_TEAMS)})"
+        )
     bad_teams = set(teams) - VALID_TEAMS
     if bad_teams:
         raise CatalogError(
             f"{where}: tool {raw['name']!r} has invalid team(s) {bad_teams}; "
             f"allowed: {sorted(VALID_TEAMS)}"
         )
+
+    for field_name in ("platforms", "tags"):
+        if field_name in raw:
+            _require_sequence(raw[field_name], field_name, raw["name"], where)
 
     return Tool(
         name=raw["name"],
@@ -49,6 +59,19 @@ def _parse_tool(raw: dict, *, function: str, category: str, where: str) -> Tool:
         function=function,
         category=category,
     )
+
+
+def _require_sequence(value, field_name: str, tool_name: str, where: str) -> None:
+    """Reject a scalar where a YAML list is expected.
+
+    A string is iterable, so ``tuple("scanner")`` would silently become
+    ``('s', 'c', ...)``. Catch that at load time instead.
+    """
+    if isinstance(value, str) or not isinstance(value, (list, tuple)):
+        raise CatalogError(
+            f"{where}: tool {tool_name!r} field {field_name!r} must be a list, "
+            f"got {value!r}"
+        )
 
 
 def load_function(path: Path) -> Function:

@@ -8,6 +8,8 @@ so they are easy to diff, share and keep in version control.
 from __future__ import annotations
 
 import json
+import os
+import tempfile
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,9 +17,12 @@ from pathlib import Path
 from .models import CSF_FUNCTIONS
 
 # Default home for saved cases. Override with NETGUARDIAN_HOME.
-import os
-
 CASES_DIR = Path(os.environ.get("NETGUARDIAN_HOME", Path.home() / ".netguardian")) / "cases"
+
+
+def slugify(name: str) -> str:
+    """Turn a case name into a filesystem-safe slug."""
+    return "".join(c if c.isalnum() else "-" for c in name.lower()).strip("-")
 
 # Starter checklists keyed by case kind, each item tagged with a CSF function.
 # These are deliberately short; teams are expected to adapt them.
@@ -90,20 +95,52 @@ class Case:
     # --- persistence ---------------------------------------------------
     @property
     def slug(self) -> str:
-        return "".join(c if c.isalnum() else "-" for c in self.name.lower()).strip("-")
+        return slugify(self.name)
 
     def path(self, cases_dir: Path = CASES_DIR) -> Path:
         return cases_dir / f"{self.slug}.json"
 
-    def save(self, cases_dir: Path = CASES_DIR) -> Path:
+    def save(self, cases_dir: Path = CASES_DIR, *, exclusive: bool = False) -> Path:
+        """Persist the case as JSON.
+
+        Cases can hold sensitive incident notes, so the directory and file are
+        created with owner-only permissions (0700/0600). The write is atomic
+        (temp file + os.replace) so an interrupted write never corrupts an
+        existing case. With exclusive=True, refuse to overwrite an existing
+        case at the same slug, so two differently-named cases that normalise to
+        the same slug can't clobber each other.
+        """
         cases_dir.mkdir(parents=True, exist_ok=True)
+        try:
+            os.chmod(cases_dir, 0o700)
+        except OSError:
+            pass
         p = self.path(cases_dir)
-        p.write_text(json.dumps(asdict(self), indent=2))
+        if exclusive and p.exists():
+            raise FileExistsError(p)
+
+        payload = json.dumps(asdict(self), indent=2)
+        fd, tmp = tempfile.mkstemp(dir=cases_dir, prefix=f".{self.slug}.", suffix=".tmp")
+        try:
+            os.chmod(tmp, 0o600)
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                f.write(payload)
+            os.replace(tmp, p)
+        except BaseException:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
+            raise
+        try:
+            os.chmod(p, 0o600)
+        except OSError:
+            pass
         return p
 
     @classmethod
     def load(cls, path: Path) -> "Case":
-        data = json.loads(Path(path).read_text())
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
         return cls(
             name=data["name"],
             kind=data["kind"],

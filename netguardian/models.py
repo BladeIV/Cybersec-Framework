@@ -96,7 +96,13 @@ class Catalog:
                 return False
             if q:
                 haystack = " ".join(
-                    [tool.name, tool.description, " ".join(tool.tags)]
+                    [
+                        tool.name,
+                        tool.description,
+                        " ".join(tool.tags),
+                        tool.category,
+                        CSF_FUNCTIONS.get(tool.function, ""),
+                    ]
                 ).lower()
                 if q not in haystack:
                     return False

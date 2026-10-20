@@ -44,7 +44,16 @@ def test_search_filter():
 def test_free_only_filter():
     catalog = load_catalog()
     free = catalog.filter(free_only=True)
-    assert all(t.cost == "free" for t in free.iter_tools())
+    free_tools = list(free.iter_tools())
+    assert free_tools, "expected some free tools"
+    assert all(t.cost == "free" for t in free_tools)
+
+
+def test_search_matches_function_or_category():
+    catalog = load_catalog()
+    # "Identify" is a function name, not usually in a tool's own text.
+    names = [t.name for t in catalog.filter(query="identify").iter_tools()]
+    assert "Nmap" in names
 
 
 def test_empty_functions_dropped():
@@ -74,19 +83,75 @@ def test_case_checklist_and_markdown():
     case.add_note("Isolated host web01")
     md = case.to_markdown()
     assert "# Test incident" in md
-    assert "[x]" in md and "Isolated host web01" in md
+    # The done item renders checked and the rest render unchecked.
+    assert "[x]" in md and "[ ]" in md
+    assert "Isolated host web01" in md
 
 
-def test_case_roundtrip(tmp_path: Path):
+def test_case_roundtrip_preserves_checklist(tmp_path: Path):
     case = Case.new("Engagement A", "pentest")
+    case.checklist[1].done = True
     case.add_note("ROE signed")
     path = case.save(tmp_path)
     loaded = Case.load(path)
     assert loaded.name == case.name
     assert loaded.kind == "pentest"
     assert loaded.notes[0].text == "ROE signed"
+    # The whole checklist (including done states) survives a round-trip.
+    assert loaded.checklist == case.checklist
+
+
+def test_recorded_progress_persists(tmp_path: Path):
+    """The triage workflow: mark a step done + note, save, reload."""
+    case = Case.new("Live case", "incident")
+    case.checklist[0].done = True
+    case.add_note("Contained host db01")
+    case.save(tmp_path)
+
+    reloaded = Case.load(tmp_path / f"{case.slug}.json")
+    assert reloaded.checklist[0].done is True
+    assert reloaded.progress == (1, len(reloaded.checklist))
+    assert reloaded.notes[-1].text == "Contained host db01"
+
+
+def test_save_exclusive_refuses_clobber(tmp_path: Path):
+    first = Case.new("Dup Name", "incident")
+    second = Case.new("dup name", "pentest")
+    assert first.slug == second.slug  # both normalise to "dup-name"
+    first.save(tmp_path, exclusive=True)
+    # A different name that normalises to the same slug must not overwrite.
+    with pytest.raises(FileExistsError):
+        second.save(tmp_path, exclusive=True)
 
 
 def test_unknown_case_kind():
     with pytest.raises(ValueError):
         Case.new("x", "nonsense")
+
+
+def _one_tool_yaml(extra: str) -> str:
+    return (
+        "function: ID\nname: Identify\ncategories:\n"
+        "  - name: X\n    tools:\n"
+        "      - name: T\n        url: http://x\n        description: d\n"
+        f"{extra}"
+    )
+
+
+def test_empty_teams_rejected(tmp_path: Path):
+    (tmp_path / "e.yaml").write_text(
+        _one_tool_yaml("        teams: []\n        license: MIT\n        cost: free\n")
+    )
+    with pytest.raises(CatalogError):
+        load_catalog(tmp_path)
+
+
+def test_scalar_tags_rejected(tmp_path: Path):
+    (tmp_path / "s.yaml").write_text(
+        _one_tool_yaml(
+            "        teams: [red]\n        license: MIT\n        cost: free\n"
+            "        tags: scanner\n"
+        )
+    )
+    with pytest.raises(CatalogError):
+        load_catalog(tmp_path)

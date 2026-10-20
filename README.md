@@ -26,9 +26,10 @@ inspired by the [OSINT Framework](https://osintframework.com/).
 ## Why NetGuardian?
 
 Security folks juggle dozens of tools scattered across bookmarks, wikis and memory. NetGuardian puts the
-**free, open-source** ones in a single, searchable place — mapped to a framework you already report against —
-and adds a lightweight **triage workspace** so you can actually run an incident or an engagement without
-leaving the terminal. No accounts, no SaaS, no cost.
+**free** ones — overwhelmingly open-source, plus a few free community editions of proprietary tools (each
+labelled) — in a single, searchable place, mapped to a framework you already report against, and adds a
+lightweight **triage workspace** so you can actually run an incident or an engagement without leaving the
+terminal. No accounts, no SaaS, no cost.
 
 <div align="center">
 <img src="docs/images/overview.png" alt="NetGuardian catalog view" width="85%">
@@ -75,6 +76,9 @@ netguardian --web            # serves the same app at http://localhost:8000
 | `netguardian --list` | Print the whole catalog as text |
 | `netguardian case new "<name>" --kind incident\|pentest` | Start a triage case |
 | `netguardian case list` | List your saved cases |
+| `netguardian case steps "<name>"` | List the checklist with step numbers |
+| `netguardian case check "<name>" <n>` | Mark step `<n>` done (`--undo` to reverse) |
+| `netguardian case note "<name>" "<text>"` | Add a note to the case |
 | `netguardian case show "<name>"` | Print a case as Markdown |
 | `netguardian case export "<name>" -o report.md` | Export a case report |
 
@@ -127,7 +131,7 @@ Adding a tool is usually a one-file edit. See **[CONTRIBUTING.md](CONTRIBUTING.m
 
 ```bash
 git clone https://github.com/BladeIV/Cybersec-Framework
-cd NetGuardian
+cd Cybersec-Framework
 pip install -e ".[dev]"
 pytest                          # validates every catalog entry
 python scripts/check_links.py   # checks that tool links are alive
