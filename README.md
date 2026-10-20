@@ -113,17 +113,18 @@ Incident cases follow an Identify → Detect → Respond → Recover flow; pente
 
 ## ⚖️ Acceptable use & disclaimer
 
-NetGuardian is built for **lawful, authorised** security work — defensive operations (blue team) and penetration testing or red-teaming you are **explicitly authorised** to perform.
+NetGuardian is built for **lawful, authorised** security work — blue-team defence, and penetration testing or red-teaming you are **explicitly authorised** to perform.
 
 By using NetGuardian you agree to:
 
-- Only test, scan, or assess systems you **own** or have **written permission** to test.
-- Comply with all applicable laws, regulations and contractual obligations.
-- Use the tools and workflows here solely for legitimate security, research or educational purposes.
+- Only test, scan, or assess systems you **own** or have **prior written permission** to test, and stay within the agreed scope.
+- Comply with all applicable laws, regulations, and contractual obligations.
 
 You must **not** use NetGuardian, or anything it links to, for unauthorised access, "black-hat" hacking, fraud, harassment, or any other unlawful or malicious activity. **The maintainers do not condone misuse.**
 
-NetGuardian is a catalog and workflow aid — it does not perform attacks on your behalf, and it links to third-party tools that each carry their own licenses and terms. The software is provided "as is", without warranty of any kind, and the maintainers accept no liability for how you choose to use it.
+NetGuardian performs no attacks — it is a catalog and workflow aid, and the **dual-use** tools it links to each carry **their own licenses and terms**. The software is provided **"as is"**, without warranty of any kind, and the maintainers accept no liability for how you use it (consistent with GPL-3.0 §§15–16).
+
+Full policy: [TERMS.md](TERMS.md).
 
 ## 🤝 Contributing
 
